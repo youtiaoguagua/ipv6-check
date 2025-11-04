@@ -47,7 +47,7 @@ func loadConfig() Config {
 		EnableReboot: getEnvAsBool("ENABLE_REBOOT", true),
 		LogLevel:     getEnvOrDefault("LOG_LEVEL", "INFO"),
 		WebhookURL:   getEnvOrDefault("WEBHOOK_URL", ""),
-		WebhookTitle: getEnvOrDefault("WEBHOOK_TITLE", ""),
+		WebhookTitle: getEnvOrDefault("WEBHOOK_TITLE", "IPv6检测通知"),
 	}
 
 	return cfg
