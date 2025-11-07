@@ -171,7 +171,16 @@ func sendWebhook(url, title, content string, logger *slog.Logger) bool {
 
 	logger.Info("发送 webhook 通知", "url", url, "title", title)
 
-	client := &http.Client{Timeout: 10 * time.Second}
+	// 或缺
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+
+	client := &http.Client{
+		Timeout:   10 * time.Second,
+		Transport: tr,
+	}
+
 	resp, err := client.Post(url, "application/json", bytes.NewBuffer(jsonData))
 	if err != nil {
 		logger.Error("Webhook 请求失败", "url", url, "error", err)
