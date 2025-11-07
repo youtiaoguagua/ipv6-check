@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"log/slog"
@@ -171,7 +172,7 @@ func sendWebhook(url, title, content string, logger *slog.Logger) bool {
 
 	logger.Info("发送 webhook 通知", "url", url, "title", title)
 
-	// 或缺
+	// 忽略ssl
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
